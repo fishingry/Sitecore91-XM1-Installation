@@ -30,8 +30,9 @@
 3. **Microsoft SQL Server 2017, 2016 SP2** has been installed
 4. **IIS 10.0** has been installed
 
-## (Optional) Install prerequisites for Sitecore 9.1
+## Install prerequisites for Sitecore 9.1
 
+- Automatically download and install Sitecore's prerequisites based on `Prerequisites.json` which is extracted from downloaded Sitecore XM1 package. They are, for example, DacFrameworkx64.msi, dotnet-hosting-win.exe and so on
 - Open PowerShell as Administrator
 - Execute the command
   
