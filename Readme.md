@@ -27,6 +27,8 @@
    - It must be installed as Window Service via [Nssm 2.24](https://nssm.cc/release/nssm-2.24.zip)
 
 2. [Microsoft PowerShell® version 5.1 or later](https://www.microsoft.com/en-us/download/details.aspx?id=54616)
+3. **Microsoft SQL Server 2017, 2016 SP2** has been installed
+4. **IIS 10.0** has been installed
 
 ## (Optional) Install prerequisites for Sitecore 9.1
 
@@ -73,6 +75,14 @@
     ```powershell
     .\XM1-SingleDeveloper.ps1
     ```
+
+3. After installed successfully, we can verify the CM and CD instance by the following steps (**Note:** assume the Sitecore instance has **XM910** as prefix)
+   1. **CM** - Content Management Server
+      - Access the Url - https://XM910.cm.local/sitecore
+      - The credential account is: **admin/b**
+    
+   2. **CD** - Content Delivery Server
+      - Access the Url - http://XM910.cd.local
 
 ## How to Uninstall Sitecore 9.1 XM1
 
