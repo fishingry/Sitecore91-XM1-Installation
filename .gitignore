@@ -1,0 +1,6 @@
+assets/
+download/*.xml
+download/*.zip
+logs/
+certificates/
+Temp/
