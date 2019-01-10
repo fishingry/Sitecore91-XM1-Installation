@@ -3,8 +3,11 @@ $assetsFolder = Join-Path -Path $PSScriptRoot -ChildPath "assets"
 $logPath = Join-Path -Path $PWD -ChildPath "logs"
 $certificatesPath = Join-Path -Path $PWD -ChildPath "certificates"
 $tempLocation = Join-Path -Path $PWD -ChildPath "Temp"
-
 $xm1ZipFile = Join-Path -Path $downloadFolder -ChildPath "Sitecore 9.1.0 rev. 001564 (WDP XM1 packages).zip"
+
+$WebRoot = "E:\Inetpub\wwwroot"
+# The Prefix that will be used on SOLR, Website, Database instances and Publishing Service.
+$Prefix = "XM910"
 
 $SitecoreXM1 = @{
     SitecoreContentDeliveryPackage             = Join-Path -Path $assetsFolder -ChildPath "Sitecore XM 9.1.0 rev. 001564 (OnPrem)_cd.scwdp.zip"
@@ -34,8 +37,7 @@ $SqlServer = @{
     SqlAdminPassword = 'Kimcu@123'                       # The password for $SQLAdminUser.
 }
 
-# The Prefix that will be used on SOLR, Website and Database instances.
-$Prefix = "XM910"
+
 # The name for the Sitecore Content Delivery server.
 $SitecoreContentManagementSitename = "$Prefix.cm.local"
 # The name for the Sitecore Content Management Server.
@@ -45,7 +47,7 @@ $IdentityServerSiteName = "$Prefix.identityserver"
 $IdentityServerExportPassword = $IdentityServerSiteName
 
 $sitecore = @{
-    WebRoot  = "E:\Inetpub\wwwroot"
+    WebRoot  = $WebRoot
     RootCertFileName = "Sitecore_91_XM1"
     # The Password for the Sitecore Admin User. This will be regenerated if left on the default.
     SitecoreAdminPassword = "b"
@@ -87,4 +89,13 @@ $singleDeveloperParams = @{
     RootCertFileName                  = $sitecore.RootCertFileName
     CertPath                          = $certificatesPath
     ExportPassword                    = $IdentityServerExportPassword
+}
+
+####################### PUBLISHING SERVICE ###################################
+$PublishingServiceInstance = "$($Prefix)_PublishingService"
+$PublishingServicePort = 5001
+$PublishingServiceConfig = @{
+    PackagePath = Join-Path -Path $downloadFolder -ChildPath "Sitecore Publishing Service 4.0.0 rev. 00521-x64.zip"
+    ContentPath = Join-Path -Path $WebRoot -ChildPath $PublishingServiceInstance
+    CheckStatusUrl = "http://$($PublishingServiceInstance):$($PublishingServicePort)/api/publishing/operations/status"
 }

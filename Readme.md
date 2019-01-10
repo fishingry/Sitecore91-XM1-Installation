@@ -1,6 +1,8 @@
-# Install Sitecore 9.1 Initial Release - XM Scaled (XM1) - OnPremises
+# Playing with Sitecore 9.1 Initial Release - XM Scaled (XM1) - OnPremises
 
-## Folders Structure
+## Install Sitecore 9.1 Initial Release - XM Scaled (XM1) - OnPremises
+
+### Folders Structure
 
 ```
 |
@@ -15,12 +17,12 @@
 |----- Install-Prerequisites.ps1
 ```
 
-## Preparations
+### Preparations
 
 1. Download the [Sitecore 9.1.0 rev. 001564 (WDP XM1 packages).zip](https://dev.sitecore.net/~/media/B6F43F5FC9C54ED9A7425B76F134E08C.ashx). Then copy to `.\download` folder by following structure above.
 2. Copy the `license.xml` file into the `.\download` folder as well
 
-## Assumptions
+### Assumptions
 
 1. [Solr 7.2.1](https://archive.apache.org/dist/lucene/solr/7.2.1/solr-7.2.1.zip) has been installed with the following requirements:
    - Support SSL which means that we only can access via **https**
@@ -30,7 +32,7 @@
 3. **Microsoft SQL Server 2017, 2016 SP2** has been installed
 4. **IIS 10.0** has been installed
 
-## Install prerequisites for Sitecore 9.1
+### Install prerequisites for Sitecore 9.1
 
 - Automatically download and install Sitecore's prerequisites based on `Prerequisites.json` which is extracted from downloaded Sitecore XM1 package. They are, for example, DacFrameworkx64.msi, dotnet-hosting-win.exe and so on
 - Open PowerShell as Administrator
@@ -41,7 +43,7 @@
     ```
 - **Notes:** It might require restarting the machine. After restarted, just execute the above command again.
 
-## Start Installing Sitecore 9.1 XM1
+### Start Installing Sitecore 9.1 XM1
 
 1. Open the file `parameters.ps1` by any text editor; then modify the corresponding values
 
@@ -85,10 +87,33 @@
    2. **CD** - Content Delivery Server
       - Access the Url - http://XM910.cd.local
 
-## How to Uninstall Sitecore 9.1 XM1
+### How to Uninstall Sitecore 9.1 XM1
 
 It can be accomplished by simply executing the below command
 
 ```powershell
 .\XM1-SingleDeveloper.ps1 -Uninstall
 ```
+
+## Install Sitecore Publishing Service 4.0.0
+
+### Preparation
+
+- Download the following package and module for Sitecore Publishing Service
+  - [Sitecore Publishing Service 4.0.0 rev. 00521-x64.zip](https://dev.sitecore.net/~/media/9E6E1DF9447A4B4CAE503A7752183E98.ashx)
+  - [Sitecore Publishing Module 4.0.0 rev. 00521.zip](https://dev.sitecore.net/~/media/ED1FE8113D264CBD956783BAD2EA7776.ashx)
+- Copy **Sitecore Publishing Service 4.0.0 rev. 00521-x64.zip** into `download` folder
+
+### Start Installing
+
+- Open the PowerShell as Administrator; then execute the command
+    ```powershell
+    .\PublishingService.ps1
+    ```
+
+### How to Uninstall
+
+- Simply execute the command via PowerShell as Administrator
+    ```powershell
+    .\PublishingService.ps1 -Uninstall
+    ```
